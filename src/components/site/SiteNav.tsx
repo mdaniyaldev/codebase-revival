@@ -43,9 +43,9 @@ export function SiteNav() {
               alt="Booze Babies Atl"
               className="size-14 rounded-full object-cover ring-1 ring-primary/40 md:size-16"
             />
-            <span className="hidden sm:block">
-              <span className="block font-display text-2xl italic text-foreground">Booze Babies <span className="text-primary">Atl</span></span>
-              <span className="mt-1 block text-[0.6rem] tracking-[0.35em] text-muted-foreground uppercase">Luxury Mobile Bar</span>
+            <span className="block">
+              <span className="block font-display text-lg italic text-foreground sm:text-2xl">Booze Babies <span className="text-primary">Atl</span></span>
+              <span className="mt-1 block text-[0.5rem] tracking-[0.2em] text-muted-foreground uppercase sm:text-[0.6rem] sm:tracking-[0.35em]">Luxury Mobile Bar</span>
             </span>
           </span>
         </a>
