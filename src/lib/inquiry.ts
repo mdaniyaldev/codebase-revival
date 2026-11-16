@@ -4,7 +4,7 @@ export type Inquiry = {
   fullName: string; email: string; phone: string; eventType: string; eventDate: string;
   guestCount: string; services: BarKey[]; budget: string; details: string;
 };
-export type InquiryErrors = Partial<Record<keyof Inquiry, string>>;
+export type InquiryErrors = Partial<Record<keyof Inquiry, string | undefined>>;
 
 export const emptyInquiry: Inquiry = {
   fullName: "", email: "", phone: "", eventType: "", eventDate: "", guestCount: "", services: ["cocktail"], budget: "", details: "",

@@ -11,7 +11,7 @@ export type Prefill = { guestCount: string; services: BarKey[]; budget: string; 
 const inputCls =
   "w-full border-0 border-b border-input bg-transparent px-0 py-3 text-base text-foreground placeholder:text-muted-foreground/70 transition-colors focus:border-primary focus:outline-none focus-visible:outline-none aria-[invalid=true]:border-destructive";
 
-function Field({ id, label, required, error, children, className }: { id: string; label: string; required?: boolean; error?: string; children: ReactNode; className?: string }) {
+function Field({ id, label, required, error, children, className }: { id: string; label: string; required?: boolean; error?: string | undefined; children: ReactNode; className?: string | undefined }) {
   return (
     <div className={className}>
       <label htmlFor={id} className="text-xs tracking-[0.2em] text-muted-foreground uppercase">
