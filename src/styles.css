@@ -114,8 +114,8 @@
   --chart-1: var(--gold); --chart-2: var(--citrus); --chart-3: var(--sage); --chart-4: var(--champagne); --chart-5: var(--gold-deep);
   --sidebar: var(--charcoal); --sidebar-foreground: var(--ivory); --sidebar-primary: var(--gold); --sidebar-primary-foreground: var(--charcoal);
   --sidebar-accent: var(--muted); --sidebar-accent-foreground: var(--ivory); --sidebar-border: var(--border); --sidebar-ring: var(--gold);
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-display: "Poppins", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Poppins", "Helvetica Neue", Arial, sans-serif;
   --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
   --shadow-lux: 0 30px 60px -30px oklch(0 0 0 / 60%);
 }
@@ -145,10 +145,17 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-body);
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; }
+  /* Headings: Poppins Semi-Bold/Bold with slightly tight tracking */
+  h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; }
+  h1 { font-weight: 700; }
+  /* Paragraphs and UI: Poppins Regular/Medium */
+  p { font-weight: 400; }
+  button, input, select, textarea, label { font-family: var(--font-body); }
+  button, input, select, textarea { font-weight: 500; }
   :focus-visible { outline: 2px solid var(--ring); outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -165,7 +172,7 @@
 }
 @utility display-xl {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 8.5vw, 7.75rem);
+  font-size: clamp(2.5rem, 7vw, 5.7rem);
   line-height: 0.92;
   letter-spacing: -0.035em;
 }
