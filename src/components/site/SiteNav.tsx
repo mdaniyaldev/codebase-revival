@@ -37,8 +37,17 @@ export function SiteNav() {
     >
       <nav aria-label="Main" className="mx-auto flex max-w-7xl items-center justify-between px-5 md:px-10">
         <a href="#home" className="leading-none" onClick={() => setOpen(false)}>
-          <span className="block font-display text-2xl italic text-foreground">Booze Babies <span className="text-primary">Atl</span></span>
-          <span className="mt-1 block text-[0.6rem] tracking-[0.35em] text-muted-foreground uppercase">Luxury Mobile Bar</span>
+          <span className="flex items-center gap-3">
+            <img
+              src="/logo.jpeg"
+              alt="Booze Babies Atl"
+              className="size-14 rounded-full object-cover ring-1 ring-primary/40 md:size-16"
+            />
+            <span className="hidden sm:block">
+              <span className="block font-display text-2xl italic text-foreground">Booze Babies <span className="text-primary">Atl</span></span>
+              <span className="mt-1 block text-[0.6rem] tracking-[0.35em] text-muted-foreground uppercase">Luxury Mobile Bar</span>
+            </span>
+          </span>
         </a>
         <ul className="hidden items-center gap-8 lg:flex">
           {NAV.map((n) => (

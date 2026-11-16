@@ -12,7 +12,11 @@ export function SiteFooter() {
       </div>
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-12 md:px-10">
         <div className="md:col-span-5">
-          <p className="font-display text-4xl italic">Booze Babies <span className="text-primary">Atl</span></p>
+          <img
+            src="/logo.jpeg"
+            alt="Booze Babies Atl"
+            className="size-36 rounded-full object-cover ring-1 ring-primary/40"
+          />
           <p className="mt-3 text-muted-foreground">Luxury Mobile Bartending<br />Metro Atlanta & Georgia</p>
         </div>
         <nav aria-label="Footer" className="md:col-span-3">
