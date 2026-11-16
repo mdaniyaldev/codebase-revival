@@ -29,4 +29,4 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 
-- The home page renders the migrated static site (src/content/site-body.html + public/site/ script and styles) verbatim; edit those files to change the site.
+- The home page is composed from section components in src/components/site/; pricing rules live in src/lib/pricing.ts and inquiry validation/submission in src/lib/inquiry.ts so logic stays out of presentation.

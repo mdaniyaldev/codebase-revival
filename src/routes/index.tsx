@@ -1,57 +1,61 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
-import bodyHtml from "@/content/site-body.html?raw";
+import { useState } from "react";
+import { SiteNav } from "@/components/site/SiteNav";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { TripleBar } from "@/components/site/TripleBar";
+import { Events } from "@/components/site/Events";
+import { RatesCalculator } from "@/components/site/RatesCalculator";
+import { BookingForm, type Prefill } from "@/components/site/BookingForm";
+import { SiteFooter } from "@/components/site/SiteFooter";
+import { GUEST_DEFAULT, calculateEstimate, formatUSD, type Addons } from "@/lib/pricing";
+import type { BarKey } from "@/lib/site-data";
+import { IMG } from "@/lib/site-data";
 
 const TITLE = "Booze Babies Atl — Luxury Mobile Bartending | Metro Atlanta & Georgia";
 const DESC =
-  "Booze Babies Atl — Luxury Mobile Bartending serving Metro Atlanta & Georgia. Premium cocktail bar, kids lemonade bar, and zero-proof mocktail bar for weddings, corporate events, private parties, and family celebrations.";
+  "Luxury mobile bartending in Metro Atlanta & Georgia: a craft cocktail bar, a kids' lemonade bar and a zero-proof mocktail bar — one event, three unforgettable bar experiences.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: TITLE },
       { name: "description", content: DESC },
-      { name: "keywords", content: "mobile bartending Atlanta, luxury mobile bar, cocktail bar Atlanta, kids lemonade bar, mocktail bar, wedding bar service Georgia, corporate events Atlanta, Booze Babies Atl" },
       { property: "og:title", content: "Booze Babies Atl — Luxury Mobile Bartending" },
-      { property: "og:description", content: "Three distinct bar experiences. One unforgettable event. Metro Atlanta's premier mobile bartending service." },
+      { property: "og:description", content: "One Event. Three Unforgettable Bar Experiences. Metro Atlanta's luxury mobile bar." },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: IMG.hero },
       { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
-      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" },
-      { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" },
-      { rel: "stylesheet", href: "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" },
-      { rel: "stylesheet", href: "/site/style.css" },
+      { name: "twitter:image", content: IMG.hero },
     ],
   }),
   component: Index,
 });
 
-function loadScript(src: string) {
-  return new Promise<void>((resolve) => {
-    const s = document.createElement("script");
-    s.src = src;
-    s.onload = () => resolve();
-    s.onerror = () => resolve();
-    s.setAttribute("data-site", "1");
-    document.body.appendChild(s);
-  });
-}
-
 function Index() {
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      await loadScript("https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js");
-      if (!cancelled) await loadScript(`/site/script.js?v=${Date.now()}`);
-    })();
-    return () => {
-      cancelled = true;
-      document.querySelectorAll("script[data-site]").forEach((s) => s.remove());
-    };
-  }, []);
+  const [guests, setGuests] = useState(GUEST_DEFAULT);
+  const [addons, setAddons] = useState<Addons>({ lemonade: false, mocktail: false });
+  const [prefill, setPrefill] = useState<Prefill | null>(null);
 
-  return <div dangerouslySetInnerHTML={{ __html: bodyHtml }} />;
+  const lockIn = () => {
+    const est = calculateEstimate(guests, addons);
+    const services: BarKey[] = ["cocktail", ...(addons.lemonade ? ["lemonade" as const] : []), ...(addons.mocktail ? ["mocktail" as const] : [])];
+    setPrefill({ guestCount: String(est.guests), services, budget: `${formatUSD(est.total)} (calculator estimate)`, stamp: Date.now() });
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <>
+      <SiteNav />
+      <main>
+        <Hero />
+        <About />
+        <TripleBar />
+        <Events />
+        <RatesCalculator guests={guests} addons={addons} onGuests={setGuests} onAddons={setAddons} onLockIn={lockIn} />
+        <BookingForm prefill={prefill} />
+      </main>
+      <SiteFooter />
+    </>
+  );
 }
