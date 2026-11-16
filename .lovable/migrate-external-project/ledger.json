@@ -1,0 +1,6 @@
+[
+{"capability":"code","source":"static index.html/style.css/script.js","outcome":"ported as home page with original markup, styles and script","status":"verified","next_action":null},
+{"capability":"schema/records/auth","source":"none","outcome":"static site, no data store","status":"accepted","next_action":null},
+{"capability":"booking form backend","source":"script.js (not connected in source)","outcome":"kept as-is: captures inquiry client-side only","status":"accepted","next_action":"optional: store inquiries in Lovable Cloud / email"},
+{"capability":"external assets","source":"Unsplash, Google Fonts, Bootstrap CDN","outcome":"preserved","status":"verified","next_action":null}
+]

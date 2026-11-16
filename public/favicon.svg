@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Booze Babies Atl cocktail glass</title>
+  <rect width="64" height="64" rx="14" fill="#292725"/>
+  <path d="M14 15h36L34 36v10h8v4H22v-4h8V36L14 15Z" fill="#d8b875"/>
+  <path d="M19.5 19 32 32.5 44.5 19h-25Z" fill="#292725"/>
+  <circle cx="44" cy="12" r="2.5" fill="#f3e7cc"/>
+  <circle cx="51" cy="20" r="1.5" fill="#d8b875"/>
+</svg>
